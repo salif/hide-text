@@ -1,0 +1,27 @@
+{
+  "name": "salifm-encrypt",
+  "version": "1.0.0",
+  "description": "Encrypt and Decrypt",
+  "main": "encrypt",
+  "scripts": {
+    "test": "node encrypt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salifm/encrypt.git"
+  },
+  "keywords": [
+    "encrypt",
+    "decrypt",
+    "salifm"
+  ],
+  "author": "Salif Mehmed",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/salifm/encrypt/issues"
+  },
+  "homepage": "https://github.com/salifm/encrypt#readme",
+  "dependencies": {
+    "clipboardy": "^2.0.0"
+  }
+}

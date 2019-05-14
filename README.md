@@ -1,2 +1,15 @@
 # encrypt
-Encrypt and decrypt text
+
+## Usage
+
+### encrypt
+
+```
+$ ./encrypt enc "text"
+```
+
+### decrypt
+
+```
+$ ./encrypt dec
+```
