@@ -2,22 +2,22 @@
 
 ## Install
 
-```
-$ git clone https://github.com/salifm/encrypt.git
-$ cd encrypt
-$ npm install
+```bash
+git clone https://github.com/salifm/encrypt.git
+cd encrypt
+npm install
 ```
 
 ## Usage
 
 ### encrypt
 
-```
-$ ./encrypt enc "text"
+```bash
+./encrypt enc "text"
 ```
 
 ### decrypt
 
-```
-$ ./encrypt dec
+```bash
+./encrypt dec
 ```
