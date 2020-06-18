@@ -3,21 +3,17 @@
 ## Install
 
 ```bash
-git clone https://github.com/salifm/encrypt.git
-cd encrypt
-npm install
+npm install -g https://codeberg.org/salifm/hide-text.git
 ```
 
 ## Usage
 
-### encrypt
+Run the following command:
 
 ```bash
-./encrypt enc "text"
+hide-text
 ```
 
-### decrypt
+# License
 
-```bash
-./encrypt dec
-```
+Licensed under the [MIT](./LICENSE) license

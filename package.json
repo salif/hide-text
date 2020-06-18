@@ -1,27 +1,29 @@
 {
-  "name": "salifm-encrypt",
-  "version": "1.0.0",
-  "description": "Encrypt and Decrypt",
-  "main": "encrypt",
-  "scripts": {
-    "test": "node encrypt"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/salifm/encrypt.git"
-  },
-  "keywords": [
-    "encrypt",
-    "decrypt",
-    "salifm"
-  ],
-  "author": "Salif Mehmed",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/salifm/encrypt/issues"
-  },
-  "homepage": "https://github.com/salifm/encrypt#readme",
-  "dependencies": {
-    "clipboardy": "^2.0.0"
-  }
+    "name": "hide-text",
+    "version": "2.0.0",
+    "description": "Hide text into another text",
+    "main": "hide-text.js",
+    "scripts": {
+        "test": "echo 'no tests'"
+    },
+    "bin": {
+        "hide-text": "./hide-text.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://codeberg.org/salifm/hide-text.git"
+    },
+    "keywords": [
+        "hide-text",
+        "unicode"
+    ],
+    "author": "Salif Mehmed",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://codeberg.org/salifm/hide-text/issues"
+    },
+    "homepage": "https://codeberg.org/salifm/hide-text",
+    "dependencies": {
+        "clipboardy": "^2.0.0"
+    }
 }
