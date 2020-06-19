@@ -1,73 +1,87 @@
 #!/usr/bin/env node
 
-let clipboardy = require('clipboardy');
-let inv0 = String.fromCharCode(8203)
-let inv1 = String.fromCharCode(8204)
-let inv2 = String.fromCharCode(8205)
-let args = process.argv.length;
-
-if (args < 3) {
-     printHelp();
-     process.exit(0);
+"use strict"
+const clipboardy = require('clipboardy')
+const inv0 = String.fromCharCode(8203)
+const inv1 = String.fromCharCode(8204)
+const inv2 = String.fromCharCode(8205)
+const args = {
+     len: process.argv.length,
+     cmd: process.argv[2],
+     first: process.argv[3],
+     second: process.argv[4]
 }
 
-console.log("under construction")
-process.exit(1);
-
-if (process.argv[2] === "enc") {
-     if (args === 3) {
-          console.log("need more arguments!");
-          process.exit(1);
-     }
-     let input = process.argv[3];
-     let output = "Hi";
-     if (args > 4) {
-          output = process.argv[4];
-     }
-     encrypt(input, output);
-}
-else if (process.argv[2] === "dec") {
-     let input = "";
-     if (args === 3) {
-          input = clipboardy.readSync();
-     }
-     else {
-          input = process.argv[3];
-     }
-     decrypt(input);
-}
-else {
-     console.log("invalid command!");
-     process.exit(1);
+if (args.len < 3) {
+     printHelp()
+     process.exit(0)
 }
 
-function encrypt(input, output) {
-     let scr = "";
-     for (let i = 0; i < input.length; i++) {
-          scr += input.charCodeAt(i).toString(2) + "2";
+switch (args.cmd) {
+     case "hide":
+          expectArgs(2)
+          const newPub = hideText(args.first, args.second)
+          copyText(newPub)
+          console.log(newPub)
+          break
+     case "unhide":
+          const pub = (args < 4) ? pasteText() : args.first
+          assertValid(pub)
+          const sec = unhideText(pub)
+          console.log(sec)
+          break
+     default:
+          console.error("invalid command!")
+          process.exit(1)
+}
+
+function hideText(pub, sec) {
+     let result = ""
+     for (let i = 0; i < sec.length; i++) {
+          result += sec.charCodeAt(i).toString(2) + "2"
      }
-     scr = scr
+     result = result
           .replace(/0/g, inv0)
           .replace(/1/g, inv1)
-          .replace(/2/g, inv2);
-     output = output.charAt(0) + scr + output.substring(1);
-     clipboardy.writeSync(output);
-     console.log("input: " + input);
-     console.log("output: " + output);
-     console.log("length: " + output.length);
-     console.log("Saved to clipboard!");
+          .replace(/2/g, inv2)
+     result = pub.charAt(0) + result + pub.substring(1)
+     return result
 }
 
-function decrypt(input) {
-     let scr = input.substring(1, input.lastIndexOf(inv2));
-     scr = scr.split(inv2).join("2").split(inv0).join("0").split(inv1).join("1");
-     scr = scr.split("2");
-     let output = "";
-     for (let i = 0; i < scr.length; i++) {
-          output += String.fromCharCode(parseInt(scr[i], 2));
+function unhideText(pub) {
+     let s = pub.substring(1, pub.lastIndexOf(inv2))
+     s = s.split(inv2).join("2").split(inv0).join("0").split(inv1).join("1")
+     s = s.split("2")
+     let result = ""
+     for (let i = 0; i < s.length; i++) {
+          result += String.fromCharCode(parseInt(s[i], 2))
      }
-     console.log("input: " + input);
-     console.log("output: " + output);
+     return result
+}
+
+function copyText(text) {
+     clipboardy.writeSync(text)
+}
+
+function pasteText() {
+     return clipboardy.readSync()
+}
+
+function expectArgs(n) {
+     if (args.len < n + 3) {
+          console.error("expected more arguments")
+          process.exit(1)
+     }
+}
+
+function assertValid(...a) {
+     for (let i = 0; i < a.length; i++) {
+          const e = a[i]
+          if (e == undefined || e == null) {
+               console.error("something went wrong!")
+               process.exit(1)
+          }
+     }
 }
 
 function printHelp() {
@@ -113,5 +127,5 @@ Examples:
      hide-text contains "Hello World!"
      hide-text match "Hello World!" "You can't read this"
      hide-text version
-`);
+`)
 }

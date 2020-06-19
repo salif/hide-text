@@ -1,5 +1,5 @@
 {
-    "name": "hide-text",
+    "name": "@salifm/hide-text",
     "version": "2.0.0",
     "description": "Hide text into another text",
     "main": "hide-text.js",
@@ -17,7 +17,7 @@
         "hide-text",
         "unicode"
     ],
-    "author": "Salif Mehmed",
+    "author": "Salif Mehmed <salifm@salifm.com> (https://salifm.com)",
     "license": "MIT",
     "bugs": {
         "url": "https://codeberg.org/salifm/hide-text/issues"

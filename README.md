@@ -1,9 +1,9 @@
-# encrypt
+# hide-text
 
 ## Install
 
 ```bash
-npm install -g https://codeberg.org/salifm/hide-text.git
+npm install -g git+https://codeberg.org/salifm/hide-text.git
 ```
 
 ## Usage
