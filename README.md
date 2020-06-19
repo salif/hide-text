@@ -3,6 +3,12 @@
 ## Install
 
 ```bash
+npm install -g @salifm/hide-text
+```
+
+### or
+
+```bash
 npm install -g git+https://codeberg.org/salifm/hide-text.git
 ```
 

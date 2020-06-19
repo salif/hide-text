@@ -11,19 +11,22 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://codeberg.org/salifm/hide-text.git"
+        "url": "https://codeberg.org/salifm/hide-text.git"
     },
     "keywords": [
         "hide-text",
         "unicode"
     ],
-    "author": "Salif Mehmed <salifm@salifm.com> (https://salifm.com)",
+    "author": {
+        "name": "Salif Mehmed",
+        "email": "salifm@salifm.com",
+        "url": "https://salifm.com"
+    },
     "license": "MIT",
     "bugs": {
-        "url": "https://codeberg.org/salifm/hide-text/issues"
+        "url": "https://codeberg.org/salifm/hide-text/issues",
+        "email": "salifm@salifm.com"
     },
     "homepage": "https://codeberg.org/salifm/hide-text",
-    "dependencies": {
-        "clipboardy": "^2.0.0"
-    }
+    "dependencies": {}
 }

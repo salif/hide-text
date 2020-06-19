@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 "use strict"
-const clipboardy = require('clipboardy')
 const inv0 = String.fromCharCode(8203)
 const inv1 = String.fromCharCode(8204)
 const inv2 = String.fromCharCode(8205)
@@ -21,14 +20,23 @@ switch (args.cmd) {
      case "hide":
           expectArgs(2)
           const newPub = hideText(args.first, args.second)
-          copyText(newPub)
           console.log(newPub)
           break
      case "unhide":
-          const pub = (args < 4) ? pasteText() : args.first
-          assertValid(pub)
-          const sec = unhideText(pub)
+          expectArgs(1)
+          const sec = unhideText(args.first)
           console.log(sec)
+          break
+     case "version":
+          console.log(require("./package.json").version)
+          break
+     case "contains":
+          expectArgs(1)
+          console.log(containsText(args.first).toString())
+          break
+     case "match":
+          expectArgs(2)
+          console.log(matchText(args.first, args.second).toString())
           break
      default:
           console.error("invalid command!")
@@ -59,28 +67,21 @@ function unhideText(pub) {
      return result
 }
 
-function copyText(text) {
-     clipboardy.writeSync(text)
+function containsText(pub) {
+     return pub.indexOf(inv0) > -1 || pub.indexOf(inv1) > -1 || pub.indexOf(inv2) > -1
 }
 
-function pasteText() {
-     return clipboardy.readSync()
+function matchText(pub, sec) {
+     if (!containsText(pub)) {
+          return false
+     }
+     return sec === unhideText(pub)
 }
 
 function expectArgs(n) {
      if (args.len < n + 3) {
           console.error("expected more arguments")
           process.exit(1)
-     }
-}
-
-function assertValid(...a) {
-     for (let i = 0; i < a.length; i++) {
-          const e = a[i]
-          if (e == undefined || e == null) {
-               console.error("something went wrong!")
-               process.exit(1)
-          }
      }
 }
 
@@ -93,13 +94,8 @@ Commands:
 
      hide <public text> <secret text>
 
-          Print and copy to the clipboard <public text>
-          which contains insterted invisible <secret text>
-
-     unhide
-
-          Get <public text> from the clipboard and print the 
-          secret text which is hidden in <public text>
+          Print <public text> which contains insterted
+          invisible <secret text>
 
      unhide <public text>
 
@@ -107,14 +103,14 @@ Commands:
 
      contains <public text>
 
-          Print "true" if <public text> contains hidden secret text,
-          otherwise print "false" and exit with code 1
+          Print "true" if <public text> contains invisible secret text,
+          otherwise print "false" and exit with status code 1
 
      match <public text> <secret text>
 
-          Print "true" if <public text> contains hidden secret text
-          and the hidden secret text is equal to <secret text>,
-          otherwise print "false" and exit with code 1
+          Print "true" if <public text> contains invisible secret text
+          and the invisible secret text is equal to <secret text>,
+          otherwise print "false" and exit with status code 1
 
      version
 
@@ -122,10 +118,10 @@ Commands:
 
 Examples:
 
-     hide-text hide "You can't read this" "Hello World!"
-     hide-text unhide "Hello World!"
-     hide-text contains "Hello World!"
-     hide-text match "Hello World!" "You can't read this"
+     hide-text hide "Hello World!" "You can't read this"
+     hide-text unhide "H‌​‌‌​​‌‍‌‌​‌‌‌‌‍‌‌‌​‌​‌‍‌​​​​​‍‌‌​​​‌‌‍‌‌​​​​‌‍‌‌​‌‌‌​‍‌​​‌‌‌‍‌‌‌​‌​​‍‌​​​​​‍‌‌‌​​‌​‍‌‌​​‌​‌‍‌‌​​​​‌‍‌‌​​‌​​‍‌​​​​​‍‌‌‌​‌​​‍‌‌​‌​​​‍‌‌​‌​​‌‍‌‌‌​​‌‌‍ello World!"
+     hide-text contains "H‌​‌‌​​‌‍‌‌​‌‌‌‌‍‌‌‌​‌​‌‍‌​​​​​‍‌‌​​​‌‌‍‌‌​​​​‌‍‌‌​‌‌‌​‍‌​​‌‌‌‍‌‌‌​‌​​‍‌​​​​​‍‌‌‌​​‌​‍‌‌​​‌​‌‍‌‌​​​​‌‍‌‌​​‌​​‍‌​​​​​‍‌‌‌​‌​​‍‌‌​‌​​​‍‌‌​‌​​‌‍‌‌‌​​‌‌‍ello World!"
+     hide-text match "H‌​‌‌​​‌‍‌‌​‌‌‌‌‍‌‌‌​‌​‌‍‌​​​​​‍‌‌​​​‌‌‍‌‌​​​​‌‍‌‌​‌‌‌​‍‌​​‌‌‌‍‌‌‌​‌​​‍‌​​​​​‍‌‌‌​​‌​‍‌‌​​‌​‌‍‌‌​​​​‌‍‌‌​​‌​​‍‌​​​​​‍‌‌‌​‌​​‍‌‌​‌​​​‍‌‌​‌​​‌‍‌‌‌​​‌‌‍ello World!" "You can't read this"
      hide-text version
 `)
 }
