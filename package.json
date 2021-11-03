@@ -1,7 +1,7 @@
 {
     "name": "@salifm/hide-text",
     "version": "3.2.0",
-    "description": "Hide text into another text",
+    "description": "Hide a secret text message inside a text message",
     "main": "hide-text.js",
     "scripts": {
         "test": "echo 'no tests'"
