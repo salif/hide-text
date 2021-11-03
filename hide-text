@@ -1,0 +1,47 @@
+#!/usr/bin/sh
+
+function main {
+	output=$(zenity --question --switch --title "Menu" --text "Choose" --extra-button "Hide Text" --extra-button "Unhide Text" --extra-button "Show version")
+	if [ "$?" = 1 ]
+	then
+		if [ "$output" = "Hide Text" ]
+		then
+			input_ht_pub=$(zenity --text-info --title "Input public text" --text "Input public text" --editable)
+			if [ "$?" = 0 ]
+			then
+				input_ht_sec=$(zenity --text-info --title "Input secret text" --text "Input secret text" --editable)
+				if [ "$?" = 0 ]
+				then
+					output_ht=$(./hide-text.js hide "$input_ht_pub" "$input_ht_sec")
+					if [ "$?" = 0 ]
+					then
+						printf "%s" "$output_ht" | zenity --text-info --title "Result" --editable
+						main "$@"
+					fi
+				fi
+			fi
+		elif [ "$output" = "Unhide Text" ]
+		then
+			input_ut=$(zenity --text-info --title="Unhide text" --text="Input" --editable)
+			if [ "$?" = 0 ]
+			then
+				output_ut=$(./hide-text.js unhide "$input_ut")
+				if [ "$?" = 0 ]
+				then
+					printf "%s" "$output_ut" | zenity --text-info --title "Result" --editable
+					main "$@"
+				fi
+			fi
+		elif [ "$output" = "Show version" ]
+		then
+			output_v=$(./hide-text.js version)
+			if [ "$?" = 0 ]
+			then
+				printf "%s" "$output_v" | zenity --text-info --title "Version" --editable
+				main "$@"
+			fi
+		fi
+	fi
+}
+
+main "$@"

@@ -1,32 +1,32 @@
 {
-    "name": "@salifm/hide-text",
-    "version": "2.1.0",
-    "description": "Hide text into another text",
-    "main": "hide-text.js",
-    "scripts": {
-        "test": "echo 'no tests'"
-    },
-    "bin": {
-        "hide-text": "./hide-text.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://codeberg.org/salifm/hide-text.git"
-    },
-    "keywords": [
-        "hide-text",
-        "unicode"
-    ],
-    "author": {
-        "name": "Salif Mehmed",
-        "email": "salifm@salifm.com",
-        "url": "https://salifm.com"
-    },
-    "license": "MIT",
-    "bugs": {
-        "url": "https://codeberg.org/salifm/hide-text/issues",
-        "email": "salifm@salifm.com"
-    },
-    "homepage": "https://codeberg.org/salifm/hide-text",
-    "dependencies": {}
+	"name": "@salifm/hide-text",
+	"version": "3.0.0",
+	"description": "Hide text into another text",
+	"main": "hide-text.js",
+	"scripts": {
+		"test": "echo 'no tests'"
+	},
+	"bin": {
+		"hide-text": "./hide-text"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://codeberg.org/salif/hide-text.git"
+	},
+	"keywords": [
+		"hide-text",
+		"unicode"
+	],
+	"author": {
+		"name": "Salif Mehmed",
+		"email": "mail@salif.eu",
+		"url": "https://salif.eu"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://codeberg.org/salif/hide-text/issues",
+		"email": "mail@salif.eu"
+	},
+	"homepage": "https://codeberg.org/salif/hide-text",
+	"dependencies": {}
 }
