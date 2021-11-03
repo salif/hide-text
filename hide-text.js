@@ -16,8 +16,6 @@ switch (process.argv[2]) {
 	case "version":
 		console.log(require("./package.json").version)
 		break
-	default:
-		process.exit(1)
 }
 
 function hide_text(pub, sec) {
@@ -42,8 +40,4 @@ function unhide_text(pub) {
 		result += String.fromCharCode(parseInt(s[i], 2))
 	}
 	return result
-}
-
-function contains_text(pub) {
-	return pub.indexOf(c_inv0) > -1 || pub.indexOf(c_inv1) > -1 || pub.indexOf(c_inv2) > -1
 }
