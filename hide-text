@@ -12,7 +12,7 @@ function main {
 				input_ht_sec=$(zenity --text-info --title "Input secret text" --text "Input secret text" --editable)
 				if [ "$?" = 0 ]
 				then
-					output_ht=$(./hide-text.js hide "$input_ht_pub" "$input_ht_sec")
+					output_ht=$(hide-text-cli hide "$input_ht_pub" "$input_ht_sec")
 					if [ "$?" = 0 ]
 					then
 						printf "%s" "$output_ht" | zenity --text-info --title "Result" --editable
@@ -25,7 +25,7 @@ function main {
 			input_ut=$(zenity --text-info --title="Unhide text" --text="Input" --editable)
 			if [ "$?" = 0 ]
 			then
-				output_ut=$(./hide-text.js unhide "$input_ut")
+				output_ut=$(hide-text-cli unhide "$input_ut")
 				if [ "$?" = 0 ]
 				then
 					printf "%s" "$output_ut" | zenity --text-info --title "Result" --editable
@@ -34,7 +34,7 @@ function main {
 			fi
 		elif [ "$output" = "Show version" ]
 		then
-			output_v=$(./hide-text.js version)
+			output_v=$(hide-text-cli version)
 			if [ "$?" = 0 ]
 			then
 				printf "%s" "$output_v" | zenity --text-info --title "Version" --editable
