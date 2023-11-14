@@ -5,7 +5,7 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Hide text</title>
+	<title>Hide a secret text message inside a text message</title>
 </head>
 
 <body>
@@ -52,29 +52,31 @@
 			background-color: #f2f2f2;
 			padding: 20px;
 		}
+
 	</style>
+	<script>var in_browser = true;</script>
 	<script src="./hide-text.js"></script>
 	<script>
 		function hide_click() {
-			result.value = '';
+			result.value = "";
 			if (publicText.value.length == 0) {
-				publicText.focus()
-				return
+				publicText.focus();
+				return;
 			}
 			if (secretText.value.length == 0) {
-				secretText.focus()
-				return
+				secretText.focus();
+				return;
 			}
-			result.value = hide_text(publicText.value, secretText.value)
+			result.value = hide_text(publicText.value, secretText.value);
 		}
 		function unhide_click() {
 			publicText.value = '';
 			secretText.value = '';
 			if (result.value.length == 0) {
-				result.focus()
-				return
+				result.focus();
+				return;
 			}
-			secretText.value = unhide_text(result.value)
+			secretText.value = unhide_text(result.value);
 		}
 	</script>
 </body>
