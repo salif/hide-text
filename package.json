@@ -1,14 +1,14 @@
 {
     "name": "@salifm/hide-text",
-    "version": "4.0.0",
+    "version": "4.0.1",
     "description": "Hide a secret text message inside a text message",
     "main": "hide-text.js",
     "scripts": {
         "test": "echo 'no tests'"
     },
     "bin": {
-        "hide-text": "./hide-text",
-        "hide-text-cli": "./hide-text.js"
+        "hide-text": "hide-text",
+        "hide-text-cli": "hide-text.js"
     },
     "repository": {
         "type": "git",
